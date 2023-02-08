@@ -33,7 +33,9 @@ function createmultiplicationRows(row_id) {
 
 function initialRow() {
     let row = []
-    row.push(document.createElement('div'))
+    let cell = document.createElement('div')
+    cell.className = 'cell'
+    row.push(cell)
     for (let i = 2; i < 10; i++) {
         let cell = numberCell(i)
         row.push(cell)
@@ -77,12 +79,12 @@ function multiplicationCell(x, y) {
 
 function randomPickButton() {
     let button = document.createElement('button')
+    button.className = 'random-button'
     button.append('Случайное поле')
 
     const pickRandomCell = () => {
-        const [x, y] = [0, 0].map(() => getRandomInt(2, 9))
-        console.log(x, y)
-        getCellbyCoords(x, y).focus()
+        let pickCandidates = document.querySelectorAll('.input-cell:not(.correct)')
+        pickArrayElement(pickCandidates).focus()
     }
 
     button.addEventListener('click', pickRandomCell);
@@ -125,6 +127,9 @@ function handleTableNavigation(event) {
     getCellbyCoords(x, y).focus()
 }
 
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min) + min)
+function pickArrayElement(arr) {
+    let min = 0
+    let max = arr.length
+    let index = Math.floor(Math.random() * (max - min) + min)
+    return arr[index]
 }
