@@ -1,4 +1,5 @@
 import './style.css'
+import {buttonBlock} from './buttonBlock'
 
 const app = document.getElementById('app')
 
@@ -6,7 +7,7 @@ const table = multiplicationTable()
 
 document.addEventListener('keydown', handleTableNavigation)
 
-app.prepend(table, randomPickButton())
+app.prepend(table, buttonBlock())
 
 function multiplicationTable() {
     let table = document.createElement('div')
@@ -77,21 +78,6 @@ function multiplicationCell(x, y) {
     return cell
 }
 
-function randomPickButton() {
-    let button = document.createElement('button')
-    button.className = 'random-button'
-    button.append('Случайное поле')
-
-    const pickRandomCell = () => {
-        let pickCandidates = document.querySelectorAll('.input-cell:not(.correct)')
-        pickArrayElement(pickCandidates).focus()
-    }
-
-    button.addEventListener('click', pickRandomCell);
-
-    return button
-}
-
 function getCellbyCoords(x, y) {
     return document.querySelector(`.input-cell[data-x="${x}"][data-y="${y}"]`)
 }
@@ -125,11 +111,4 @@ function handleTableNavigation(event) {
             return
     }
     getCellbyCoords(x, y).focus()
-}
-
-function pickArrayElement(arr) {
-    let min = 0
-    let max = arr.length
-    let index = Math.floor(Math.random() * (max - min) + min)
-    return arr[index]
 }
