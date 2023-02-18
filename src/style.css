@@ -47,6 +47,11 @@ body {
     background-color: transparent;
     font-weight: 700;
     color: white;
+    background-color: hsl(205, 90%, 70%);
+}
+
+.input-cell:focus {
+    filter: brightness(115%)
 }
 
 .button-block {
@@ -78,10 +83,10 @@ body {
     font-size: 1.25rem;
 }
 
-.correct, .correct input {
-    background-color: hsl(120, 90%, 70%);
+.correct {
+    background-color: hsl(120, 90%, 70%) !important;
 }
 
-.incorrect, .incorrect input {
-    background-color: hsl(0, 90%, 70%);
+.incorrect {
+    background-color: hsl(0, 90%, 70%) !important;
 }
